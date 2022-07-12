@@ -467,10 +467,10 @@ document.addEventListener("keyup", (event) => {
 					'3': 7.0,
 					'4': 10.0,
 					'5': 13.0,
-					'6': -13.0,
-					'7': -10.0,
-					'8': -7.0,
-					'9': -4.0
+					'6': 16.0,
+					'7': 19.0,
+					'8': 22.0,
+					'9': 25.0
 				};
 				TXDNE.waifusPerSecond = speeds[event.key];
 				recomputeWaifuQuiltParameters();
