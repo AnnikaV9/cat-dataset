@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#info-bar {
+    font-family: "Open Sans", sans-serif;
+    width: 200px;
+    margin: 0;
+    height: 30px;
+    display: table;
+    font-size: 12px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    position: fixed;
+    background-color: #000;
+    box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
+    opacity: 0.4;
+    border-radius: 1px;
+}
+
+#info-bar:hover {
+    opacity: 0.9;
+    transition: 0.5s ease;
+}
+
+#info-bar.regular {
+    height: 30px;
+    font-size: 12px;
+    padding: .2em .5em;
+}
+.ib-content-wrapper {
+    text-align: left;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+}
+.ib-content-wrapper p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.ib-text-wrapper {
+    margin-right: .67em;
+    display: inline-block;
+    line-height: 1.3;
+}

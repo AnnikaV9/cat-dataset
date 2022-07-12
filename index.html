@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="TXDNE.css">
+	<link rel="stylesheet" type="text/css" href="infobar.css">
+</head>
+<div id="waifu-quilt" class="magnify-on-hover"></div>
+<script>
+    TXDNE = {
+		waifuSourceURLBase: "cats/cat_",
+		waifuSourceURLFileExtension: "png",
+		waifuSetSize: 29843,
+		leftPadWaifuIDsWithZeroes: false,
+		waifuQuiltSelector: "#waifu-quilt",
+		waifuSize: 64,
+		waifusPerSecond: 0,
+		panTickInterval: (1000 / 60)
+	};
+</script>
+<div id="info-bar" class="regular closable">
+    <div class="ib-content-wrapper">
+        <div class="ib-text-holder">
+            <p>This is a dataset of 29843 cat pictures (64x64), compiled together for training models.<br/>
+			   <br/>
+			   <b>Space:</b> Pause grid<br/>
+			   <b>Drag:</b> Pan grid<br/>
+			   <b>Click:</b> Open image<br/>
+			   <b>F:</b> Toggle fullscreen<br/>
+			   <b>Z:</b> Toggle zoom on hover<br/>
+			   <b>0-9:</b> Adjust grid speed<br/>
+			   <br/>
+			   <a href="https://demos.obormot.net/these-waifus-do-not-exist-v2-alt" target="_blank" style="color:#fff">Javascript credits</a><br/>
+			   <br/>
+			   <a href="https://github.com/AnnikaV9/cat-dataset/releases" target="_blank" style="color:#fff">Download the kitties</a> (277MB)<br/>
+			   <br/>
+               This site is managed by <a href="https://github.com/AnnikaV9" target="_blank" style="color:#fff">AnnikaV9</a>
+			</p>
+        </div>
+    </div>
+</div>
+<script src="TXDNE.js"></script>

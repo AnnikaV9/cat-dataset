@@ -1,0 +1,366 @@
+/*
+Copyright 2020 AnnikaV9
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+/*********/
+/* FONTS */
+/*********/
+
+@font-face {
+	font-family: 'Font Awesome';
+	src: url('data:font/truetype;charset=utf-8;base64,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');
+	font-weight: 300;
+	font-style: normal;
+}
+
+/*************/
+/* VARIABLES */
+/*************/
+
+:root {
+	--waifu-size: 64px;
+}
+
+/***********/
+/* GENERAL */
+/***********/
+
+html {
+	box-sizing: border-box;
+}
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+/***************/
+/* BASE LAYOUT */
+/***************/
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: sans-serif;
+	height: 100vh;
+	width: 100vw;
+	background-color: #000;
+	overflow: hidden;
+}
+
+/************/
+/* HEADINGS */
+/************/
+
+h1, h2 {
+	text-align: center;
+	margin: 0 auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 2;
+}
+h1 {
+	top: 0.75em;
+	font-size: 1.5em;
+}
+h2 {
+	font-size: 0.8125em;
+	line-height: 1.5;
+	padding: 0.5em 0.75em;
+	bottom: 1em;
+	text-shadow:
+		0 0  1px rgba(255,255,255,0.9),
+		0 0  3px rgba(255,255,255,0.9),
+		0 0  5px rgba(255,255,255,0.9);
+	background-color: rgba(255,255,255,0.6);
+	border: 1px solid rgba(0,0,0,0.7);
+	box-shadow: 0 0 0 1px rgba(255,255,255,0.4);
+	pointer-events: none;
+}
+
+.red {
+	color: #c00;
+			text-shadow:
+				0 0  1px rgba(255,255,255,0.9),
+				0 0  3px rgba(255,255,255,0.9),
+				0 0  5px rgba(255,255,255,0.9),
+				0 0  8px rgba(255,255,255,0.9),
+				0 0 13px rgba(255,255,255,0.9),
+				0 0 21px rgba(255,255,255,0.9);
+}
+@supports (width: fit-content) {
+	h1, h2 {
+		width: fit-content;
+	}
+}
+@supports (width: -moz-fit-content) {
+	h1, h2 {
+		width: -moz-fit-content;
+		padding: 0.625em 0.75em 0.5em 0.75em;
+	}
+}
+h1.hidden,
+h2.hidden {
+	opacity: 0;
+	transition: opacity 20s ease-in 10s;
+	pointer-events: auto;
+}
+h1,
+h2,
+h1.hidden:hover,
+h2.hidden:hover {
+	opacity: 1;
+	transition: opacity 0.15s ease 0.1s;
+}
+h1 a {
+	display: block;
+	padding: 0.5em 0.75em;
+	color: #fff;
+	text-shadow:
+		0 0  1px rgba(0,0,0,0.9),
+		0 0  3px rgba(0,0,0,0.9),
+		0 0  5px rgba(0,0,0,0.9);
+	background-color: rgba(51,51,51,0.4);
+	border: 1px solid rgba(255,255,255,0.7);
+	position: relative;
+	z-index: 1;
+}
+h1 a:nth-of-type(2) {
+	border-width: 0 1px 1px 1px;
+	font-weight: normal;
+	font-size: 0.5em;
+}
+h1 a:link,
+h1 a:visited {
+	text-decoration: none;
+}
+h1 a:hover {
+	color: #c00;
+	text-shadow:
+		0 0  1px #fff,
+		0 0  3px #fff,
+		0 0  5px #fff,
+		0 0  8px #fff,
+		0 0 13px #fff;
+}
+
+/************/
+/* THE GRID */
+/************/
+
+#waifu-quilt {
+	width: calc(100% + 2 * var(--waifu-size));
+	height: calc(100% + 2 * var(--waifu-size));
+	position: fixed;
+	top: calc(-0.25 * var(--waifu-size));
+	left: calc(-0.25 * var(--waifu-size));
+}
+.waifu {
+	width: var(--waifu-size);
+	height: var(--waifu-size);
+	position: absolute;
+	pointer-events: none;
+}
+.waifu-link {
+	background-color: #fff;
+	width: var(--waifu-size);
+	height: var(--waifu-size);
+	position: absolute;
+}
+
+@media only screen and (hover:hover) and (pointer:fine) {
+	.waifu {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		transition:
+			top 0.05s ease,
+			right 0.05s ease,
+			bottom 0.05s ease,
+			left 0.05s ease,
+			transform 0.05s ease;
+		transform: none;
+	}
+	#waifu-quilt.magnify-on-hover .waifu-link:hover .waifu {
+		transform: scale(2);
+		z-index: 2;
+		transition:
+			top 0.05s ease 0.05s,
+			right 0.05s ease 0.05s,
+			bottom 0.05s ease 0.05s,
+			left 0.05s ease 0.05s,
+			width 0.05s ease 0.05s,
+			height 0.05s ease 0.05s,
+                transform 0.05s ease 0.05s;
+	}
+}
+
+/*=---------------=*/
+/*= Hover outline =*/
+/*=---------------=*/
+
+@media only screen and (hover:hover) and (pointer:fine) {
+	.waifu-link::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		border: 1px solid #000;
+		pointer-events: none;
+		opacity: 0;
+		transform: none;
+		transition:
+			opacity 0.15s ease,
+			top 0.05s ease,
+			right 0.05s ease,
+			bottom 0.05s ease,
+			left 0.05s ease,
+			transform 0.05s ease;
+	}
+	.waifu-link:hover::after {
+		opacity: 1;
+		z-index: 3;
+		transition:
+			opacity 0.05s ease,
+			top 0.05s ease 0.05s,
+			right 0.05s ease 0.05s,
+			bottom 0.05s ease 0.05s,
+			left 0.05s ease 0.05s,
+			transform 0.05s ease 0.05s;
+	}
+	#waifu-quilt.magnify-on-hover .waifu-link:hover::after {
+		transform: scale(2);
+	}
+}
+
+/********************/
+/* EDGES & CONTROLS */
+/********************/
+
+#edges,
+#controls {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+}
+
+/*=-------=*/
+/*= Edges =*/
+/*=-------=*/
+
+#edges > * {
+	position: absolute;
+	background-color: #000;
+	pointer-events: auto;
+}
+#edges .top,
+#edges .bottom {
+	height: 1px;
+	width: 100%;
+}
+#edges .left,
+#edges .right {
+	width: 1px;
+	height: 100%;
+}
+#edges .top,
+#edges .left {
+	top: 0;
+	left: 0;
+}
+#edges .right,
+#edges .bottom {
+	right: 0;
+	bottom: 0;
+}
+
+/*=----------=*/
+/*= Controls =*/
+/*=----------=*/
+
+#controls > * {
+	pointer-events: auto;
+}
+#controls button.full-screen {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 1.5em;
+	font-size: 3em;
+	font-family: Font Awesome;
+	font-weight: 300;
+	border: unset;
+	margin: auto;
+	padding: 5px 8px 4px 9px;
+	bottom: 3.25em;
+	background-color: rgba(0,0,0,0.6);
+	color: rgba(255,255,255,0.7);
+	border-radius: 6px;
+	z-index: 4;
+	cursor: pointer;
+	transition: 
+		color 0.15s ease,
+		background-color 0.15s ease;
+}
+#controls button.full-screen:hover {
+	background-color: rgba(0,0,0,0.8);
+	color: #fff;
+}
+#controls button.full-screen:focus {
+	outline: none;
+}
+#controls button.full-screen.hidden {
+	opacity: 0;
+	transition: opacity 20s ease-in 10s;
+	pointer-events: auto;
+}
+#controls button.full-screen,
+#controls button.full-screen.hidden:hover {
+	opacity: 1;
+}
+#controls button.full-screen {
+	transition: none;
+}
+#controls button.full-screen.hidden:hover {
+	transition: opacity 0.15s ease 0.1s;
+}
+#controls button.full-screen::after {
+	content: "f";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.5em;
+	font-family: sans-serif;
+	font-weight: normal;
+}
+#controls button.full-screen.engaged::after {
+	content: '';
+}
+
+@media not screen and (pointer:fine) and (hover:hover) {
+	#controls {
+		display: none;
+	}
+}
