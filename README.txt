@@ -5,3 +5,6 @@ Download the tarball from the releases page:
 
 Preview the images:
     https://annikav9.github.io/cat-dataset/
+
+Credits for TXDNE.js and TXDNE.css:
+    https://demos.obormot.net/
