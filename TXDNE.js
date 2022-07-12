@@ -12,10 +12,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 /* MISC. HELPERS */
 /*****************/
 
-/*	Returns the passed object if itâ€™s truthy, or a newly created HTMLElement.
-	Ã†(x) is the element analogue of (x||{}).
+/*	Returns the passed object if it’s truthy, or a newly created HTMLElement.
+	Æ(x) is the element analogue of (x||{}).
 	*/
-function Ã†(x) {
+function Æ(x) {
 	return x || document.createElement(null);
 }
 
@@ -23,35 +23,13 @@ function Ã†(x) {
 /* TXDNE */
 /*********/
 
-
-// redirect user as necessary
-function toggleVideoMode()
-{
-        if (window.location.pathname == '/' || window.location.pathname == '/index.html')
-        {
-                window.location.replace('https://thisanimedoesnotexist.ai/video.html');
-        }
-        else if (window.location.pathname == '/video.html')
-        {
-                window.location.replace('https://thisanimedoesnotexist.ai/');
-        }
-}
 //	This function is called when a waifu box needs to be loaded.
 function loadWaifu(waifuLink) {
 	waifuLink.dataset.id = getRandomWaifuID().toString();
 	if (TXDNE.leftPadWaifuIDsWithZeroes)
 		waifuLink.dataset.id = waifuLink.dataset.id.padStart(`${TXDNE.waifuSetSize}`.length - 1, '0');
-
-        // handling of checkbox to change image hrefs but not image src
-        if (typeof TXDNE.special_href != 'undefined') {
-                waifuLink.href = `${TXDNE.special_href}${waifuLink.dataset.id}`
-                normal_href = `${TXDNE.waifuSourceURLBase}${waifuLink.dataset.id}.${TXDNE.waifuSourceURLFileExtension}`;
-                waifuLink.querySelector("img").src = normal_href;
-        }
-        else {
-                waifuLink.href = `${TXDNE.waifuSourceURLBase}${waifuLink.dataset.id}.${TXDNE.waifuSourceURLFileExtension}`;
-                waifuLink.querySelector("img").src = waifuLink.href;
-        }
+	waifuLink.href = `${TXDNE.waifuSourceURLBase}${waifuLink.dataset.id}.${TXDNE.waifuSourceURLFileExtension}`;
+	waifuLink.querySelector("img").src = waifuLink.href;
 }
 function rollDie(dieSize) {
 	return (1 + Math.floor(Math.random() * dieSize));
@@ -63,24 +41,6 @@ function adjustGridOffsetBy(xOffset, yOffset) {
 	TXDNE.waifuQuilt.offsetX += xOffset;
 	TXDNE.waifuQuilt.offsetY += yOffset;
 	TXDNE.waifuQuilt.style.transform = `translate(${TXDNE.waifuQuilt.offsetX + 'px'}, ${TXDNE.waifuQuilt.offsetY + 'px'})`;
-}
-
-function alterWaifuURL(new_psi){
-        // reload all waifus on the page if we change the psi value
-        var images = document.getElementsByTagName('img');
-        for(var i = 0; i < images.length; i++) {
-                old_image = images[i].src;
-                new_image = old_image.replace(/psi-.../, 'psi-' + new_psi);
-                images[i].src = new_image;
-                // if we are set to use slider.html
-                if (typeof TXDNE.special_href != 'undefined') {
-                        data_id = images[i].parentElement.attributes['data-id'].value;
-                        images[i].offsetParent.href = `${TXDNE.special_href}${data_id}`;
-                }
-                else {
-                        images[i].offsetParent.href = new_image;
-                }
-}
 }
 //	Recompute grid parameters.
 function recomputeWaifuQuiltParameters() {
@@ -109,7 +69,7 @@ function createWaifu() {
 	newWaifuLink.addEventListener("mouseover", (event) => {
 		if (!TXDNE.waifuQuilt.classList.contains("magnify-on-hover"))
 			return;
-
+	
 		let atEdge = {
 			top: (event.target.dataset.gridPositionY < TXDNE.waifuQuilt.gridYOrigin + 2),
 			right: (event.target.dataset.gridPositionX > TXDNE.waifuQuilt.gridXOrigin + TXDNE.waifusAcross - 3),
@@ -133,7 +93,7 @@ function createWaifu() {
 			}
 		`;
 	});
-
+	
 	return newWaifuLink;
 }
 
@@ -150,10 +110,10 @@ function populateGrid() {
 			newWaifuLink.dataset.gridPositionX = gridPositionX;
 			newWaifuLink.dataset.gridPositionY = gridPositionY;
 			newWaifuLink.style.left = newWaifuLink.dataset.gridPositionX * (TXDNE.waifuSize + 1) + 'px';
-			newWaifuLink.style.top = newWaifuLink.dataset.gridPositionY * (TXDNE.waifuSize + 1) + 'px';
+			newWaifuLink.style.top = newWaifuLink.dataset.gridPositionY * (TXDNE.waifuSize + 1) + 'px';			
 			TXDNE.waifuQuilt.appendChild(newWaifuLink);
 			loadWaifu(newWaifuLink);
-		}
+		}			
 	}
 }
 
@@ -208,7 +168,7 @@ function updateGrid() {
 	let rightOfGrid = leftOfGrid + TXDNE.waifusAcross * (TXDNE.waifuSize + 1);
 	let topOfGrid = TXDNE.waifuQuilt.querySelector(`.waifu-link[data-grid-position-y='${TXDNE.waifuQuilt.gridYOrigin}']`).getBoundingClientRect().top;
 	let bottomOfGrid = topOfGrid + TXDNE.waifusDown * (TXDNE.waifuSize + 1);
-
+	
 	let gridBounds = {
 		left: leftOfGrid,
 		right: rightOfGrid,
@@ -229,44 +189,44 @@ function updateGrid() {
 		// Add column, if needed.
 		if (gridBounds.left > 0 - TXDNE.waifuSize) {
 			// Add column left
-			//console.log("Adding column left...");
+			console.log("Adding column left...");
 			addColumn("left");
 		} else if (gridBounds.right < window.innerWidth + TXDNE.waifuSize) {
 			// Add column right
-			//console.log("Adding column right...");
+			console.log("Adding column right...");
 			addColumn("right");
 		}
 
 		// Add row, if needed.
 		if (gridBounds.top > 0 - TXDNE.waifuSize) {
 			// Add row top
-			//console.log("Adding row top...");
+			console.log("Adding row top...");
 			addRow("top");
 		} else if (gridBounds.bottom < window.innerHeight + TXDNE.waifuSize) {
 			// Add row bottom
-			//console.log("Adding row bottom...");
+			console.log("Adding row bottom...");
 			addRow("bottom");
 		}
 
 		// Remove column, if needed.
 		if (gridBounds.left < 0 - (2 * TXDNE.waifuSize)) {
 			// Remove column left
-			//console.log("Removing column left...");
+			console.log("Removing column left...");
 			removeColumn("left");
 		} else if (gridBounds.right > window.innerWidth + (2 * TXDNE.waifuSize)) {
 			// Remove column right
-			//console.log("Removing column right...");
+			console.log("Removing column right...");
 			removeColumn("right");
 		}
 
 		// Remove row, if needed.
 		if (gridBounds.top < 0 - (2 * TXDNE.waifuSize)) {
 			// Remove row top
-			//console.log("Removing row top...");
+			console.log("Removing row top...");
 			removeRow("top");
 		} else if (gridBounds.bottom > window.innerHeight + (2 * TXDNE.waifuSize)) {
 			// Remove row bottom
-			//console.log("Removing row bottom...");
+			console.log("Removing row bottom...");
 			removeRow("bottom");
 		}
 	}
@@ -277,26 +237,26 @@ function updateGrid() {
 function waifuSetup() {
 	TXDNE.waifuQuilt = document.querySelector(TXDNE.waifuQuiltSelector);
 
-	/*	Create a number of waifu boxes such that there are just enough to
-		fully tile the window (possibly exceeding the windowâ€™s dimensions,
+	/*	Create a number of waifu boxes such that there are just enough to 
+		fully tile the window (possibly exceeding the window’s dimensions,
 		as the window width and height are almost certainly not going to be
 		integer multiples of the width of a box - plus 1 more row & column.
-		This is done so that we can give the grid a negative offset (to
+		This is done so that we can give the grid a negative offset (to 
 		create the illusion of an infinite grid), while still ensuring that
 		the window is fully tiled, with no black areas along the right and
 		lower edges.
 		*/
-	TXDNE.waifuQuilt.gridXOrigin = 0;
-	TXDNE.waifuQuilt.gridYOrigin = 0;
-
+	TXDNE.waifuQuilt.gridXOrigin = 0;	
+	TXDNE.waifuQuilt.gridYOrigin = 0;	
+	
 	recomputeWaifuQuiltParameters();
-
+	
 	populateGrid();
 
 	TXDNE.waifuQuilt.offsetX = 0;
 	TXDNE.waifuQuilt.offsetY = 0;
 	/*	As noted above, we offset the grid up and to the left, so as to
-		make it seem like weâ€™re looking at just a part of an infinite grid.
+		make it seem like we’re looking at just a part of an infinite grid.
 		The offset is random, and different on every page load.
 		*/
 	let offset = -1 * Math.round(Math.random() * TXDNE.waifuSize);
@@ -304,10 +264,10 @@ function waifuSetup() {
 	TXDNE.waifuQuilt.redirectChance = 100001;
 
 	document.querySelector("head").insertAdjacentHTML("beforeend", "<style id='waifu-hover-adjust-style'></style>");
-
+	
 	TXDNE.pendingXMovement = 0;
 	TXDNE.pendingYMovement = 0;
-
+	
 	window.waifuQuiltPanTickFunction = () => {
 		var direction;
 		if (rollDie(100000) < TXDNE.waifuQuilt.redirectChance) {
@@ -322,18 +282,18 @@ function waifuSetup() {
 			direction = TXDNE.waifuQuilt.direction;
 			TXDNE.waifuQuilt.redirectChance++;
 		}
-
+		
 		TXDNE.pendingXMovement += TXDNE.panTickDistance * Math.round(Math.cos(direction));
 		TXDNE.pendingYMovement += TXDNE.panTickDistance * Math.round(Math.sin(direction));
 
 		var xMovement = Math.floor(TXDNE.pendingXMovement);
 		var yMovement = Math.floor(TXDNE.pendingYMovement);
-
+		
 		TXDNE.pendingXMovement -= xMovement;
 		TXDNE.pendingYMovement -= yMovement;
 
 		updateGrid();
-
+		
 		adjustGridOffsetBy(xMovement, yMovement);
 	}
 
@@ -347,26 +307,19 @@ function waifuSetup() {
 		window.onmousemove = '';
 		window.ontouchmove = '';
 
+		// We only want to do anything on left-clicks.
+		if (event.button != 0) return;
+
 		TXDNE.dragging = false;
 		TXDNE.dragBeginTarget.style.pointerEvents = "auto";
-		// We only want to do anything on left-clicks.
-		if (event.type != "touchend") {
-			if (event.button != 0) return;
-            event.preventDefault();
-		}
+		event.preventDefault();
 
 		recomputeWaifuQuiltParameters();
 		populateGrid();
-		if (TXDNE.gridWasScrollingPriorToDrag) {
-		  clearInterval(window.waifuQuiltPanTickTock);
-		  window.waifuQuiltPanTickTock = setInterval(window.waifuQuiltPanTickFunction, TXDNE.panTickInterval);
-		}
+		if (TXDNE.gridWasScrollingPriorToDrag)
+			window.waifuQuiltPanTickTock = setInterval(window.waifuQuiltPanTickFunction, TXDNE.panTickInterval);
 
-		if (event.type != "touchend") {
-            return false;
-		} else {
-			return true;
-        }
+		return false;
 	});
 	window.addEventListener("touchend", TXDNE.dragEndEvent);
 	window.addEventListener("touchcancel", (event) => {
@@ -378,45 +331,18 @@ function waifuSetup() {
 	});
 	window.addEventListener("mousedown", TXDNE.dragBeginEvent = (event) => {
 		// We only want to do anything on left-clicks.
-		if (event.type != "touchstart") {
-			if (event.button != 0) return;
+		if (event.button != 0) return;
 
-                         // if this is a click within the control panel box, do not process it as a pan
-                         control_coords = document.getElementsByClassName('controls')[0].getBoundingClientRect();
-                         if (event.clientX > control_coords.left && event.clientX < control_coords.right && event.clientY > control_coords.top && event.clientY < control_coords.bottom) {
-                                 return false;
-                         }
-                        
-
-
-			if (true == $(event.target).hasClass("waifu-link")) {
-				event.preventDefault();
-			}
-		}
-                else
-                {
-                        x = event.touches[0].clientX;
-                        y = event.touches[0].clientY;
-                         control_coords = document.getElementsByClassName('controls')[0].getBoundingClientRect();
-                         if (x > control_coords.left && x < control_coords.right && y > control_coords.top && y < control_coords.bottom) {
-                                 return false;
-                         }
-                }
+		event.preventDefault();
 
 		TXDNE.gridWasScrollingPriorToDrag = (window.waifuQuiltPanTickTock != null);
 		if (TXDNE.gridWasScrollingPriorToDrag) {
 			clearInterval(window.waifuQuiltPanTickTock);
 			window.waifuQuiltPanTickTock = null;
 		}
-
-		if (event.type != "touchstart") {
-			TXDNE.mouseCoordX = event.clientX;
-			TXDNE.mouseCoordY = event.clientY;
-		} else {
-			TXDNE.mouseCoordX = event.touches[0].clientX;
-			TXDNE.mouseCoordY = event.touches[0].clientY;
-		}
-
+		
+		TXDNE.mouseCoordX = event.clientX;
+		TXDNE.mouseCoordY = event.clientY;
 
 		TXDNE.dragBeginTarget = event.target;
 
@@ -425,23 +351,13 @@ function waifuSetup() {
 				TXDNE.dragBeginTarget.style.pointerEvents = "none";
 			TXDNE.dragging = true;
 
-			if (event.type != "touchmove") {
-				let xMovement = event.clientX - TXDNE.mouseCoordX;
-				let yMovement = event.clientY - TXDNE.mouseCoordY;
+			let xMovement = event.clientX - TXDNE.mouseCoordX;
+			let yMovement = event.clientY - TXDNE.mouseCoordY;
 
-				TXDNE.mouseCoordX = event.clientX;
-				TXDNE.mouseCoordY = event.clientY;
+			TXDNE.mouseCoordX = event.clientX;
+			TXDNE.mouseCoordY = event.clientY;
 
-				adjustGridOffsetBy(xMovement, yMovement);
-			} else {
-				let xMovement = event.touches[0].clientX - TXDNE.mouseCoordX;
-				let yMovement = event.touches[0].clientY - TXDNE.mouseCoordY;
-
-				TXDNE.mouseCoordX = event.touches[0].clientX;
-				TXDNE.mouseCoordY = event.touches[0].clientY;
-
-				adjustGridOffsetBy(xMovement, yMovement);
-			}
+			adjustGridOffsetBy(xMovement, yMovement);
 			updateGrid();
 		};
 		window.ontouchmove = TXDNE.dragMoveEvent;
@@ -453,9 +369,8 @@ function waifuSetup() {
 }
 //	Set up the grid.
 waifuSetup();
-//	Add the â€˜hiddenâ€™ class to the headings, so theyâ€™ll fade out slowly.
+//	Add the ‘hidden’ class to the headings, so they’ll fade out slowly.
 setTimeout(() => {
-        // removed h2 temporarily
 	document.querySelectorAll("h1, h2, #controls button.full-screen").forEach(heading => {
 		heading.classList.add("hidden");
 	});
@@ -491,14 +406,11 @@ function toggleFullScreen(on) {
 		});
 	}
 }
-Ã†(document.querySelector("#controls button.full-screen")).addEventListener("click", (event) => {
+Æ(document.querySelector("#controls button.full-screen")).addEventListener("click", (event) => {
 	toggleFullScreen();
 });
 document.addEventListener("keyup", (event) => {
 	switch (event.key) {
-                case 'v':
-                        toggleVideoMode();
-                        break;
 		case 'f':
 			toggleFullScreen();
 			break;
@@ -548,16 +460,17 @@ document.addEventListener("keyup", (event) => {
 			break;
 		default:
 			if (parseInt(event.key)) {
+				console.log(TXDNE);
 				let speeds = {
-					'1': 1,
-					'2': 3,
-					'3': 5,
-					'4': 7,
-					'5': 9,
-					'6': 10,
-					'7': 12,
-					'8': 15,
-					'9': 18,
+					'1': 0.25,
+					'2': 0.5,
+					'3': 1.0,
+					'4': 2.0,
+					'5': 5.0,
+					'6': -5.0,
+					'7': -2.0,
+					'8': -1.0,
+					'9': -0.5
 				};
 				TXDNE.waifusPerSecond = speeds[event.key];
 				recomputeWaifuQuiltParameters();
@@ -573,7 +486,7 @@ window.addEventListener("wheel", (event) => {
 
 	let scrollX = event.deltaX == 0 ? 0 : (Math.min(Math.abs(event.deltaX), TXDNE.waifusAcross) * (Math.abs(event.deltaX) / event.deltaX));
 	let scrollY = event.deltaY == 0 ? 0 : (Math.min(Math.abs(event.deltaY), TXDNE.waifusDown) * (Math.abs(event.deltaY) / event.deltaY));
-
+	
 	adjustGridOffsetBy(scrollX * TXDNE.waifuSize * -0.0625, scrollY * TXDNE.waifuSize * -0.0625);
 	updateGrid();
 });
@@ -585,7 +498,7 @@ function flashFadingElement(element) {
 	}, 50);
 }
 function updateFullScreenButton() {
-	let fullScreenButton = Ã†(document.querySelector("#controls button.full-screen"));
+	let fullScreenButton = Æ(document.querySelector("#controls button.full-screen"));
 	flashFadingElement(fullScreenButton);
 	if (isFullScreen()) {
 		fullScreenButton.classList.add("engaged");
@@ -604,8 +517,6 @@ window.addEventListener("resize", (event) => {
 	clearInterval(window.waifuQuiltPanTickTock);
 	recomputeWaifuQuiltParameters();
 	populateGrid();
-	if (gridWasScrolling) {
-	  clearInterval(window.waifuQuiltPanTickTock);
-	  window.waifuQuiltPanTickTock = setInterval(window.waifuQuiltPanTickFunction, TXDNE.panTickInterval);
-	}
+	if (gridWasScrolling)
+		window.waifuQuiltPanTickTock = setInterval(window.waifuQuiltPanTickFunction, TXDNE.panTickInterval);
 });
