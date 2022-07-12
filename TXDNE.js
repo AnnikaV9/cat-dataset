@@ -1,5 +1,5 @@
 /*
-Copyright 2020 AnnikaV9
+Copyright 2020 Said Achmiz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -12,10 +12,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 /* MISC. HELPERS */
 /*****************/
 
-/*	Returns the passed object if it’s truthy, or a newly created HTMLElement.
-	Æ(x) is the element analogue of (x||{}).
+/*	Returns the passed object if itâ€™s truthy, or a newly created HTMLElement.
+	Ã†(x) is the element analogue of (x||{}).
 	*/
-function Æ(x) {
+function Ã†(x) {
 	return x || document.createElement(null);
 }
 
@@ -24,7 +24,18 @@ function Æ(x) {
 /*********/
 
 
-
+// redirect user as necessary
+function toggleVideoMode()
+{
+        if (window.location.pathname == '/' || window.location.pathname == '/index.html')
+        {
+                window.location.replace('https://thisanimedoesnotexist.ai/video.html');
+        }
+        else if (window.location.pathname == '/video.html')
+        {
+                window.location.replace('https://thisanimedoesnotexist.ai/');
+        }
+}
 //	This function is called when a waifu box needs to be loaded.
 function loadWaifu(waifuLink) {
 	waifuLink.dataset.id = getRandomWaifuID().toString();
@@ -267,7 +278,7 @@ function waifuSetup() {
 	TXDNE.waifuQuilt = document.querySelector(TXDNE.waifuQuiltSelector);
 
 	/*	Create a number of waifu boxes such that there are just enough to
-		fully tile the window (possibly exceeding the window’s dimensions,
+		fully tile the window (possibly exceeding the windowâ€™s dimensions,
 		as the window width and height are almost certainly not going to be
 		integer multiples of the width of a box - plus 1 more row & column.
 		This is done so that we can give the grid a negative offset (to
@@ -285,7 +296,7 @@ function waifuSetup() {
 	TXDNE.waifuQuilt.offsetX = 0;
 	TXDNE.waifuQuilt.offsetY = 0;
 	/*	As noted above, we offset the grid up and to the left, so as to
-		make it seem like we’re looking at just a part of an infinite grid.
+		make it seem like weâ€™re looking at just a part of an infinite grid.
 		The offset is random, and different on every page load.
 		*/
 	let offset = -1 * Math.round(Math.random() * TXDNE.waifuSize);
@@ -442,7 +453,7 @@ function waifuSetup() {
 }
 //	Set up the grid.
 waifuSetup();
-//	Add the ‘hidden’ class to the headings, so they’ll fade out slowly.
+//	Add the â€˜hiddenâ€™ class to the headings, so theyâ€™ll fade out slowly.
 setTimeout(() => {
         // removed h2 temporarily
 	document.querySelectorAll("h1, h2, #controls button.full-screen").forEach(heading => {
@@ -480,7 +491,7 @@ function toggleFullScreen(on) {
 		});
 	}
 }
-Æ(document.querySelector("#controls button.full-screen")).addEventListener("click", (event) => {
+Ã†(document.querySelector("#controls button.full-screen")).addEventListener("click", (event) => {
 	toggleFullScreen();
 });
 document.addEventListener("keyup", (event) => {
@@ -574,7 +585,7 @@ function flashFadingElement(element) {
 	}, 50);
 }
 function updateFullScreenButton() {
-	let fullScreenButton = Æ(document.querySelector("#controls button.full-screen"));
+	let fullScreenButton = Ã†(document.querySelector("#controls button.full-screen"));
 	flashFadingElement(fullScreenButton);
 	if (isFullScreen()) {
 		fullScreenButton.classList.add("engaged");
