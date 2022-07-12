@@ -462,15 +462,15 @@ document.addEventListener("keyup", (event) => {
 			if (parseInt(event.key)) {
 				console.log(TXDNE);
 				let speeds = {
-					'1': 0.25,
-					'2': 0.5,
-					'3': 1.0,
-					'4': 2.0,
-					'5': 5.0,
-					'6': -5.0,
-					'7': -2.0,
-					'8': -1.0,
-					'9': -0.5
+					'1': 1.0,
+					'2': 4.0,
+					'3': 7.0,
+					'4': 10.0,
+					'5': 13.0,
+					'6': -13.0,
+					'7': -10.0,
+					'8': -7.0,
+					'9': -4.0
 				};
 				TXDNE.waifusPerSecond = speeds[event.key];
 				recomputeWaifuQuiltParameters();
